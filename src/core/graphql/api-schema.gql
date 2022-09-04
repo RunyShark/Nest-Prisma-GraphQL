@@ -18,3 +18,12 @@ type Query {
   categories: [Category!]!
   categoryById(id: String!): Category!
 }
+
+type Mutation {
+  createCategory(input: CategoryDTO!): Category!
+  updateCategory(input: CategoryDTO!): Category!
+}
+
+input CategoryDTO {
+  name: String
+}

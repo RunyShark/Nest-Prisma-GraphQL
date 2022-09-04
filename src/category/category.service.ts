@@ -1,14 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { ConnectPrismaService } from '../connect-prisma/connect-prisma.service';
 import { Category } from './entiti/category';
-import { CategoryDTO } from './dtos/category.dto';
+import { CategoryDTO, UpdateCategoryDTO } from './dtos';
 
 @Injectable()
 export class CategoryService {
   constructor(private readonly connectPrismaService: ConnectPrismaService) {}
 
   async getMany(): Promise<Category[]> {
-    return await this.connectPrismaService.category.findMany();
+    try {
+      return await this.connectPrismaService.category.findMany();
+    } catch (error) {}
   }
   // {
   //   include: {
@@ -18,33 +20,42 @@ export class CategoryService {
   //   },
   // }
   async getById(id: string) {
-    return await this.connectPrismaService.category.findUnique({
-      where: { id },
-      // include: {
-      //   questions: {
-      //     include: {
-      //       answers: true,
-      //     },
-      //   },
-      // },
-    });
+    try {
+      return await this.connectPrismaService.category.findUnique({
+        where: { id },
+        // include: {
+        //   questions: {
+        //     include: {
+        //       answers: true,
+        //     },
+        //   },
+        // },
+      });
+    } catch (error) {}
   }
 
-  // async create(categoryDTO: CategoryDTO) {
-  //   return await this.connectPrismaService.category.create({
-  //     categoryDTO,
+  async create(data: CategoryDTO) {
+    try {
+      return await this.connectPrismaService.category.create({
+        data,
+      });
+    } catch (error) {}
+  }
+  // include: {
+  //   questions: {
   //     include: {
-  //       questions: {
-  //         include: {
-  //           answers: true,
-  //         },
-  //       },
+  //       answers: true,
   //     },
-  //   });
-  // }
-
-  async update() {
-    return;
+  //   },
+  // },
+  async update(data: UpdateCategoryDTO) {
+    const { id } = data;
+    try {
+      return await this.connectPrismaService.category.update({
+        where: { id },
+        data,
+      });
+    } catch (error) {}
   }
 
   async delete() {

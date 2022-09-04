@@ -1,7 +1,7 @@
-import { Param, ParseUUIDPipe } from '@nestjs/common';
-import { Resolver, Query, Args } from '@nestjs/graphql';
+import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 import { CategoryService } from './category.service';
 import { Category } from './entiti/category';
+import { CategoryDTO, UpdateCategoryDTO } from './dtos';
 
 @Resolver(() => Category)
 export class CategoryResolver {
@@ -15,9 +15,29 @@ export class CategoryResolver {
   }
 
   @Query(() => Category)
-  async categoryById(@Args('id') id: string) {
+  async categoryById(@Args('id') id: string): Promise<Category> {
     try {
       return await this.categoryService.getById(id);
+    } catch (error) {}
+  }
+
+  @Mutation(() => Category)
+  async createCategory(
+    @Args({ name: 'input', type: () => CategoryDTO })
+    categoryDTO: CategoryDTO
+  ) {
+    try {
+      return await this.categoryService.create(categoryDTO);
+    } catch (error) {}
+  }
+
+  @Mutation(() => Category)
+  async updateCategory(
+    @Args({ name: 'input', type: () => UpdateCategoryDTO })
+    updateCategoryDTO: UpdateCategoryDTO
+  ) {
+    try {
+      return await this.categoryService.update(updateCategoryDTO);
     } catch (error) {}
   }
 }
