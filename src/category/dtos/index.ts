@@ -1,2 +1,2 @@
-export * from './category.dto';
-export * from './update.category.dto';
+export * from './category.input';
+export * from './update.category.input';

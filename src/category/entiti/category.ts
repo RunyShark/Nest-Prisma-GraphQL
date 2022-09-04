@@ -1,5 +1,6 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 //import { Category as CategoryType } from '@prisma/client';
+import { Question } from '../../question/entities/question.entity';
 
 @ObjectType()
 export class Category {
@@ -11,5 +12,7 @@ export class Category {
   updateAt: Date;
   @Field({ nullable: true })
   name: string;
-  //questions: Question[];
+
+  @Field(() => [Question], { nullable: true })
+  questions: Question[];
 }

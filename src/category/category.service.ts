@@ -6,7 +6,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { ConnectPrismaService } from '../connect-prisma/connect-prisma.service';
-import { Category } from './entiti/category';
+
 import { CategoryInput, UpdateCategoryInput } from './dtos';
 
 @Injectable()
@@ -14,18 +14,16 @@ export class CategoryService {
   private readonly logger = new Logger('ProductService');
   constructor(private readonly connectPrismaService: ConnectPrismaService) {}
 
-  async getMany(): Promise<Category[]> {
+  async getMany() {
     try {
-      return await this.connectPrismaService.category.findMany();
+      return await this.connectPrismaService.category.findMany({
+        include: {
+          questions: true,
+        },
+      });
     } catch (error) {}
   }
-  // {
-  //   include: {
-  //     questions: {
-  //       include: { answers: true },
-  //     },
-  //   },
-  // }
+
   async getById(id: string) {
     try {
       const categoryById = await this.connectPrismaService.category.findUnique({
@@ -45,7 +43,7 @@ export class CategoryService {
     }
   }
 
-  async create(data: CategoryInput): Promise<Category> {
+  async create(data: CategoryInput) {
     try {
       return await this.connectPrismaService.category.create({
         data,

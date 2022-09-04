@@ -8,7 +8,7 @@ export class CategoryResolver {
   constructor(private readonly categoryService: CategoryService) {}
 
   @Query(() => [Category])
-  async categories(): Promise<Category[]> {
+  async categories() {
     try {
       return await this.categoryService.getMany();
     } catch (error) {}
@@ -25,7 +25,7 @@ export class CategoryResolver {
   async createCategory(
     @Args({ name: 'input', type: () => CategoryInput })
     categoryInput: CategoryInput
-  ): Promise<Category> {
+  ) {
     try {
       return await this.categoryService.create(categoryInput);
     } catch (error) {}
@@ -34,10 +34,10 @@ export class CategoryResolver {
   @Mutation(() => Category)
   async updateCategory(
     @Args({ name: 'input', type: () => UpdateCategoryInput })
-    updateCategoryDTO: UpdateCategoryInput
-  ): Promise<Category> {
+    updateCategoryInput: UpdateCategoryInput
+  ) {
     try {
-      return await this.categoryService.update(updateCategoryDTO);
+      return await this.categoryService.update(updateCategoryInput);
     } catch (error) {}
   }
 

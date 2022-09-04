@@ -31,7 +31,7 @@ model Question {
   updateAt   DateTime @updatedAt
   conent     String
   answers    Answer[]
-  Category   Category @relation(fields: [categoryId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id])
   categoryId String
 }
 
