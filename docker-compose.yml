@@ -7,8 +7,8 @@ services:
     ports:
       - '5432:5432'
     environment:
-      POSTGRES_PASSWORD: prisma
       POSTGRES_DB: prisma
-    container_name: prisma
+      POSTGRES_USER: prisma
+      POSTGRES_PASSWORD: prisma
     volumes:
       - ./src/prisma/tmp/postgres:/var/lib/postgresql/data
