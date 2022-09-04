@@ -8,7 +8,9 @@ export class CategoryResolver {
 
   @Query(() => [Category])
   //: Promise<Category[]>
-  async cateries() {
-    return await this.categoryService.getMany();
+  async categories() {
+    try {
+      return await this.categoryService.getMany();
+    } catch (error) {}
   }
 }
