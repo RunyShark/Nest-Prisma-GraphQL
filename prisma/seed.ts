@@ -3,6 +3,7 @@ import { PrismaClient } from '.prisma/client';
 const prisma = new PrismaClient();
 
 const main = async () => {
+  //await prisma.category.deleteMany();
   await prisma.category.create({
     data: {
       name: 'Explame',
