@@ -45,7 +45,7 @@ export class CategoryService {
     }
   }
 
-  async create(data: CategoryDTO) {
+  async create(data: CategoryDTO): Promise<Category> {
     try {
       return await this.connectPrismaService.category.create({
         data,

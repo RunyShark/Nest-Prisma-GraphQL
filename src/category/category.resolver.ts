@@ -25,7 +25,7 @@ export class CategoryResolver {
   async createCategory(
     @Args({ name: 'input', type: () => CategoryDTO })
     categoryDTO: CategoryDTO
-  ) {
+  ): Promise<Category> {
     try {
       return await this.categoryService.create(categoryDTO);
     } catch (error) {}
@@ -35,7 +35,7 @@ export class CategoryResolver {
   async updateCategory(
     @Args({ name: 'input', type: () => UpdateCategoryDTO })
     updateCategoryDTO: UpdateCategoryDTO
-  ) {
+  ): Promise<Category> {
     try {
       return await this.categoryService.update(updateCategoryDTO);
     } catch (error) {}
