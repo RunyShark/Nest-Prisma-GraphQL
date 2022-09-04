@@ -24,10 +24,16 @@ type Category {
   questions: [Question!]
 }
 
+type AnswerModule {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 type Query {
   categories: [Category!]!
   categoryById(id: String!): Category!
   question(id: Int!): Question!
+  answerModule(id: Int!): AnswerModule!
 }
 
 type Mutation {
@@ -37,6 +43,9 @@ type Mutation {
   createQuestion(createQuestionInput: CreateQuestionInput!): Question!
   updateQuestion(updateQuestionInput: UpdateQuestionInput!): Question!
   removeQuestion(id: Int!): Question!
+  createAnswerModule(createAnswerModuleInput: CreateAnswerModuleInput!): AnswerModule!
+  updateAnswerModule(updateAnswerModuleInput: UpdateAnswerModuleInput!): AnswerModule!
+  removeAnswerModule(id: Int!): AnswerModule!
 }
 
 input CategoryInput {
@@ -56,5 +65,16 @@ input CreateQuestionInput {
 input UpdateQuestionInput {
   content: String
   categoryId: String
+  id: Int!
+}
+
+input CreateAnswerModuleInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateAnswerModuleInput {
+  """Example field (placeholder)"""
+  exampleField: Int
   id: Int!
 }
