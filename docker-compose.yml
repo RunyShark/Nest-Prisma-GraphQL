@@ -11,4 +11,4 @@ services:
       - '5432:5432'
     container_name: prisma
     volumes:
-      - ./src/prisma/tmp/postgres:/var/lib/postgresql/data
+      - ./prisma/tmp/postgres:/var/lib/postgresql/data
