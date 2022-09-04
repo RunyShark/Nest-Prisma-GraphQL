@@ -7,8 +7,7 @@ export class CategoryResolver {
   constructor(private readonly categoryService: CategoryService) {}
 
   @Query(() => [Category])
-  //: Promise<Category[]>
-  async categories() {
+  async categories(): Promise<Category[]> {
     try {
       return await this.categoryService.getMany();
     } catch (error) {}
