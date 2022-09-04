@@ -58,7 +58,9 @@ export class CategoryService {
     } catch (error) {}
   }
 
-  async delete() {
-    return;
+  async delete(id: string) {
+    try {
+      return await this.connectPrismaService.category.delete({ where: { id } });
+    } catch (error) {}
   }
 }

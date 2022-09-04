@@ -40,4 +40,11 @@ export class CategoryResolver {
       return await this.categoryService.update(updateCategoryDTO);
     } catch (error) {}
   }
+
+  @Mutation(() => Category)
+  async deleteCategory(@Args('id') id: string): Promise<Category> {
+    try {
+      return await this.categoryService.delete(id);
+    } catch (error) {}
+  }
 }
