@@ -1,10 +1,17 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  InternalServerErrorException,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 import { ConnectPrismaService } from '../connect-prisma/connect-prisma.service';
 import { Category } from './entiti/category';
 import { CategoryDTO, UpdateCategoryDTO } from './dtos';
 
 @Injectable()
 export class CategoryService {
+  private readonly logger = new Logger('ProductService');
   constructor(private readonly connectPrismaService: ConnectPrismaService) {}
 
   async getMany(): Promise<Category[]> {
@@ -21,7 +28,7 @@ export class CategoryService {
   // }
   async getById(id: string) {
     try {
-      return await this.connectPrismaService.category.findUnique({
+      const categoryById = await this.connectPrismaService.category.findUnique({
         where: { id },
         // include: {
         //   questions: {
@@ -31,7 +38,11 @@ export class CategoryService {
         //   },
         // },
       });
-    } catch (error) {}
+      if (!categoryById) throw new NotFoundException(`La categoria con el id: ${id} no existe`);
+      return categoryById;
+    } catch (error) {
+      return error;
+    }
   }
 
   async create(data: CategoryDTO) {
@@ -60,7 +71,22 @@ export class CategoryService {
 
   async delete(id: string) {
     try {
-      return await this.connectPrismaService.category.delete({ where: { id } });
-    } catch (error) {}
+      const esta = await this.getById(id);
+
+      if (esta.status === 404) this.handleDBExceptions(esta);
+
+      return await this.connectPrismaService.category.delete({ where: { id: id } });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  private handleDBExceptions(error: any) {
+    if (error.response) throw new BadRequestException(error.message);
+    if (error.code === '23505') throw new BadRequestException(error.detail);
+    if (error.code === '23502') throw new BadRequestException(error.detail);
+
+    this.logger.error(error);
+    throw new InternalServerErrorException('Unexpected error, check server logs');
   }
 }
