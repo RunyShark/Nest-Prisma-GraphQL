@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { ConnectPrismaService } from '../connect-prisma/connect-prisma.service';
 import { Category } from './entiti/category';
-import { CategoryDTO, UpdateCategoryDTO } from './dtos';
+import { CategoryInput, UpdateCategoryInput } from './dtos';
 
 @Injectable()
 export class CategoryService {
@@ -45,7 +45,7 @@ export class CategoryService {
     }
   }
 
-  async create(data: CategoryDTO): Promise<Category> {
+  async create(data: CategoryInput): Promise<Category> {
     try {
       return await this.connectPrismaService.category.create({
         data,
@@ -59,7 +59,7 @@ export class CategoryService {
   //     },
   //   },
   // },
-  async update(data: UpdateCategoryDTO) {
+  async update(data: UpdateCategoryInput) {
     const { id } = data;
     try {
       return await this.connectPrismaService.category.update({

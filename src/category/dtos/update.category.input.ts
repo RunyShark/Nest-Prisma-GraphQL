@@ -1,8 +1,8 @@
 import { Field, InputType, PartialType } from '@nestjs/graphql';
 import { IsNotEmpty } from 'class-validator';
-import { CategoryDTO } from './category.dto';
+import { CategoryInput } from './category.input';
 @InputType()
-export class UpdateCategoryDTO extends PartialType<CategoryDTO>(CategoryDTO) {
+export class UpdateCategoryInput extends PartialType<CategoryInput>(CategoryInput) {
   @IsNotEmpty()
   @Field({ nullable: true })
   id: string;

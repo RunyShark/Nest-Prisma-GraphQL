@@ -1,7 +1,7 @@
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 import { CategoryService } from './category.service';
 import { Category } from './entiti/category';
-import { CategoryDTO, UpdateCategoryDTO } from './dtos';
+import { CategoryInput, UpdateCategoryInput } from './dtos';
 
 @Resolver(() => Category)
 export class CategoryResolver {
@@ -23,18 +23,18 @@ export class CategoryResolver {
 
   @Mutation(() => Category)
   async createCategory(
-    @Args({ name: 'input', type: () => CategoryDTO })
-    categoryDTO: CategoryDTO
+    @Args({ name: 'input', type: () => CategoryInput })
+    categoryInput: CategoryInput
   ): Promise<Category> {
     try {
-      return await this.categoryService.create(categoryDTO);
+      return await this.categoryService.create(categoryInput);
     } catch (error) {}
   }
 
   @Mutation(() => Category)
   async updateCategory(
-    @Args({ name: 'input', type: () => UpdateCategoryDTO })
-    updateCategoryDTO: UpdateCategoryDTO
+    @Args({ name: 'input', type: () => UpdateCategoryInput })
+    updateCategoryDTO: UpdateCategoryInput
   ): Promise<Category> {
     try {
       return await this.categoryService.update(updateCategoryDTO);
