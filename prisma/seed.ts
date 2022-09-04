@@ -2,7 +2,6 @@ import { readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { PrismaClient } from '.prisma/client';
 import { shuffleArray } from '../src/helper/shuffle-array.helper';
-
 const prisma = new PrismaClient();
 
 const dataPath = join(__dirname, './', 'data');
@@ -18,19 +17,24 @@ interface Question {
   mini_size: string;
   correct: string;
   incorrects: string[];
+  url: string;
 }
 
 const main = async () => {
-  const results = await Promise.all(
+  await Promise.all(
     files.map(async (file) => {
       return await prisma.category.create({
         data: {
           name: file.name,
           questions: {
-            create: file.data.map((question: Question) => ({
-              content: question.default_size,
+            create: file.data.map((question: any) => ({
+              conent: question.default_size,
               answers: {
-                create: {},
+                create: shuffleArray([...question.incorrects, question.correct]).map((answer) => ({
+                  content: answer,
+                  isCorrect: answer === question.correct,
+                  url: question.url,
+                })),
               },
             })),
           },
@@ -38,12 +42,6 @@ const main = async () => {
       });
     })
   );
-  //await prisma.category.deleteMany();
-  //   await prisma.category.create({
-  //     data: {
-  //       name: 'Explame',ls
-  //     },
-  //   })
 };
 
 main()

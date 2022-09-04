@@ -10,11 +10,7 @@
     "default_size": "https://flagcdn.com/256x192/ao.png",
     "mini_size": "https://flagcdn.com/128x96/ao.png",
     "correct": "Angola",
-    "incorrects": [
-      "Mali",
-      "United States Minor Outlying Islands",
-      "Tajikistan"
-    ],
+    "incorrects": ["Mali", "United States Minor Outlying Islands", "Tajikistan"],
     "url": "/angola"
   },
   {
@@ -690,11 +686,7 @@
     "default_size": "https://flagcdn.com/256x192/sa.png",
     "mini_size": "https://flagcdn.com/128x96/sa.png",
     "correct": "Saudi Arabia",
-    "incorrects": [
-      "Vietnam",
-      "Mayotte",
-      "United States Minor Outlying Islands"
-    ],
+    "incorrects": ["Vietnam", "Mayotte", "United States Minor Outlying Islands"],
     "url": "/saudi-arabia"
   },
   {
@@ -785,11 +777,7 @@
     "default_size": "https://flagcdn.com/256x192/ye.png",
     "mini_size": "https://flagcdn.com/128x96/ye.png",
     "correct": "Yemen",
-    "incorrects": [
-      "Kenya",
-      "Saint Pierre and Miquelon",
-      "United States Virgin Islands"
-    ],
+    "incorrects": ["Kenya", "Saint Pierre and Miquelon", "United States Virgin Islands"],
     "url": "/yemen"
   },
   {
@@ -866,11 +854,7 @@
     "default_size": "https://flagcdn.com/256x192/cz.png",
     "mini_size": "https://flagcdn.com/128x96/cz.png",
     "correct": "Czechia",
-    "incorrects": [
-      "Philippines",
-      "Turks and Caicos Islands",
-      "Republic of the Congo"
-    ],
+    "incorrects": ["Philippines", "Turks and Caicos Islands", "Republic of the Congo"],
     "url": "/the-czech-republic"
   },
   {
@@ -989,11 +973,7 @@
     "default_size": "https://flagcdn.com/256x192/lv.png",
     "mini_size": "https://flagcdn.com/128x96/lv.png",
     "correct": "Latvia",
-    "incorrects": [
-      "Central African Republic",
-      "Åland Islands",
-      "Faroe Islands"
-    ],
+    "incorrects": ["Central African Republic", "Åland Islands", "Faroe Islands"],
     "url": "/latvia"
   },
   {
@@ -1497,11 +1477,7 @@
     "default_size": "https://flagcdn.com/256x192/ck.png",
     "mini_size": "https://flagcdn.com/128x96/ck.png",
     "correct": "Cook Islands",
-    "incorrects": [
-      "Saint Lucia",
-      "Saint Pierre and Miquelon",
-      "Saint Pierre and Miquelon"
-    ],
+    "incorrects": ["Saint Lucia", "Saint Pierre and Miquelon", "Saint Pierre and Miquelon"],
     "url": "/cook-islands"
   },
   {
